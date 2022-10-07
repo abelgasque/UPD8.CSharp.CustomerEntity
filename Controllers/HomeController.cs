@@ -23,7 +23,12 @@ namespace UPD8.CSharp.CustomerEntity.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult CurtomerPersistence()
+        {
+            return View();
+        }
+
+        public IActionResult CurtomerConsult()
         {
             return View();
         }
