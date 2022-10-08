@@ -1,13 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using UPD8.CSharp.CustomerEntity.Models;
+using UPD8.CSharp.Customer.Models;
 
-namespace UPD8.CSharp.CustomerEntity.Controllers
+namespace UPD8.CSharp.Customer.Controllers
 {
     public class HomeController : Controller
     {

@@ -1,3 +1,5 @@
 .vs
+.vscode
 bin
 obj
+UPD8.CSharp.CustomerEntity.csproj.user

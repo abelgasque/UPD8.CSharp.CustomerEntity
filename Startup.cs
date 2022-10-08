@@ -1,34 +1,46 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Serilog;
+using UPD8.CSharp.Customer.Infrastructure.Services;
+using UPD8.CSharp.Infrastructure.Entities.EF;
+using UPD8.CSharp.Infrastructure.Entities.Settings;
+using UPD8.CSharp.Infrastructure.Repositories;
 
-namespace UPD8.CSharp.CustomerEntity
+namespace UPD8.CSharp.Customer
 {
     public class Startup
     {
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            _configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+        public IConfiguration _configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddControllers();
+            
+            services.AddLogging(configure => configure.AddSerilog());
+
+            services.Configure<AppSettings>(_configuration.GetSection("AppSettings"));
+
+            services.AddDbContext<AppDbContext>();
+            services.AddTransient<CustomerRepository>();
+            services.AddTransient<CustomerService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            var appSettingsSection = _configuration.GetSection("AppSettings");
+            var appSettings = appSettingsSection.Get<AppSettings>();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -48,9 +60,7 @@ namespace UPD8.CSharp.CustomerEntity
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

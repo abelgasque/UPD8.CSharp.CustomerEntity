@@ -1,0 +1,141 @@
+{
+	"info": {
+		"_postman_id": "359e26a0-eaec-4418-bbe4-c6715aadd91a",
+		"name": "UPD8 - API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"document\": \"111.222.333-44\",\r\n    \"name\": \"Usuário teste 3\",\r\n    \"birth\": \"2000-04-10T00:00:00\",\r\n    \"gender\": \"M\",\r\n    \"address\": \"Rua teste, casa 123\",\r\n    \"state\": \"SC\",\r\n    \"city\": \"Floripa\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/customer",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"customer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Read By Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/customer/4",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"customer",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Read",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/customer",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"customer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 4,\r\n    \"document\": \"111.222.333-44\",\r\n    \"name\": \"Usuário teste 3\",\r\n    \"birth\": \"2000-04-10T00:00:00\",\r\n    \"gender\": \"M\",\r\n    \"address\": \"Rua teste, casa 123\",\r\n    \"state\": \"SP\",\r\n    \"city\": \"São Paulo\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/customer",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"customer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/customer/4",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"customer",
+						"4"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://localhost:44321",
+			"type": "default"
+		}
+	]
+}

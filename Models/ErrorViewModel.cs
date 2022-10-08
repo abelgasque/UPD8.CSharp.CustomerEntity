@@ -1,6 +1,4 @@
-using System;
-
-namespace UPD8.CSharp.CustomerEntity.Models
+namespace UPD8.CSharp.Customer.Models
 {
     public class ErrorViewModel
     {
