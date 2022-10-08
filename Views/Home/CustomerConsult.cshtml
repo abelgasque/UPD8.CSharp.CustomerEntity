@@ -4,7 +4,7 @@
     var customers = ViewData["Customers"] as List<CustomerEntity>;
 }
 <div class="container">
-    <div class="row">
+    <div class="row jumbotron" style="padding: 10px;">
         <div class="col-12">
             <p>
                 <b>@ViewData["Title"]</b>
@@ -13,14 +13,17 @@
 
         <div class="col-12">
             <form action="">
-                <button type="button" class="btn btn-primary">Pesquisar</button>
-                <button type="button" class="btn btn-light">Limpar</button>
+                <a class="btn btn-primary" asp-controller="Home" asp-action="GetCustomer">
+                    Pesquisar
+                </a>
+                <a class="btn btn-light" style="margin-left:5px;">
+                    Limpar
+                </a>
             </form>
-
         </div>
     </div>
 
-    <div class="row">
+    <div class="row jumbotron" style="padding: 10px;margin-top: 50px;">
         <div class="col-12">
             <p>
                 <b>Resultado da Pesquisa</b>
@@ -30,37 +33,38 @@
         <div class="table-responsive col-12">
             <table class="table table-sm">
                 <thead>
-                    <tr>
+                    <tr style="text-align: center;">                        
+                        <th scope="col" style="width: 5px;"></th>
+                        <th scope="col" style="width: 5px;"></th>
                         <th scope="col">Cliente</th>
                         <th scope="col">CPF</th>
                         <th scope="col">Data Nasc.</th>
                         <th scope="col">Estado</th>
                         <th scope="col">Cidade</th>
                         <th scope="col">Sexo</th>
-                        <th scope="col"></th>
-                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in customers)
                     {
-                        <tr>
+                        <tr style="text-align: center;">
+                            <td>
+                                <a class="btn btn-success" asp-controller="Home" asp-action="GetCustomerById"
+                                asp-route-id="@item.Id">
+                                    Editar
+                                </a>
+                            </td>
+                            <td>
+                                <a class="btn btn-danger" asp-action="DeleteCustomerById" asp-route-id="@item.Id">
+                                    Excluir
+                                </a>
+                            </td>
                             <td>@item.Name</td>
                             <td>@item.Document</td>
-                            <td>@item.Birth.ToString("dd/MM/yyyy")</td>
+                            <td>@item.Birth.Value.ToString("dd/MM/yyyy")</td>
                             <td>@item.State</td>
                             <td>@item.City</td>
                             <td>@item.Gender</td>
-                            <td style="width: 5px;">
-                                <button type="button" class="btn btn-success">
-                                    Editar
-                                </button>
-                            </td>
-                            <td style="width: 5px;">
-                                <button type="button" class="btn btn-danger">
-                                    Excluir
-                                </button>
-                            </td>
                         </tr>
                     }
                 </tbody>

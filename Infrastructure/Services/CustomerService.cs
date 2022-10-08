@@ -57,8 +57,10 @@ namespace UPD8.CSharp.Customer.Infrastructure.Services
             _logger.LogInformation($"CustomerService.GetById => Start");
             try
             {
-                _logger.LogInformation($"CustomerService.GetById => End");
-                return await _repository.GetById(pId);
+                _logger.LogInformation($"CustomerService.GetById => End");                
+                CustomerEntity customer = await _repository.GetById(pId);
+                customer.BirthText = customer.Birth.Value.ToString("yyyy-MM-dd");
+                return customer;
             }
             catch (Exception ex)
             {
