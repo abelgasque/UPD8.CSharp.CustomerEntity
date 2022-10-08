@@ -1,7 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Threading.Tasks;
+using UPD8.CSharp.Customer.Infrastructure.Services;
 using UPD8.CSharp.Customer.Models;
+using UPD8.CSharp.Infrastructure.Entities.EF;
 
 namespace UPD8.CSharp.Customer.Controllers
 {
@@ -9,9 +13,14 @@ namespace UPD8.CSharp.Customer.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
-        {
+        private readonly CustomerService _service;
+
+        public HomeController(
+            ILogger<HomeController> logger,
+            CustomerService service
+        ) {
             _logger = logger;
+            _service = service;
         }
 
         public IActionResult Index()
@@ -24,8 +33,10 @@ namespace UPD8.CSharp.Customer.Controllers
             return View();
         }
 
-        public IActionResult CurtomerConsult()
+        public async Task<IActionResult> CurtomerConsult()
         {
+            List<CustomerEntity> customers = await _service.GetAll();
+            ViewBag.Customers = customers;
             return View();
         }
 

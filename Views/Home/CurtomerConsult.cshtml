@@ -1,6 +1,71 @@
-﻿@{
+﻿@using UPD8.CSharp.Infrastructure.Entities.EF
+@{
     ViewData["Title"] = "Consulta Cliente";
+    var customers = ViewData["Customers"] as List<CustomerEntity>;
 }
-<h3>@ViewData["Title"]</h3>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <p>
+                <b>@ViewData["Title"]</b>
+            </p>
+        </div>
 
-<p>Consulta de cliente.</p>
+        <div class="col-12">
+            <form action="">
+                <button type="button" class="btn btn-primary">Pesquisar</button>
+                <button type="button" class="btn btn-light">Limpar</button>
+            </form>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <p>
+                <b>Resultado da Pesquisa</b>
+            </p>
+        </div>
+
+        <div class="table-responsive col-12">
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <th scope="col">Cliente</th>
+                        <th scope="col">CPF</th>
+                        <th scope="col">Data Nasc.</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Cidade</th>
+                        <th scope="col">Sexo</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in customers)
+                    {
+                        <tr>
+                            <td>@item.Name</td>
+                            <td>@item.Document</td>
+                            <td>@item.Birth.ToString("dd/MM/yyyy")</td>
+                            <td>@item.State</td>
+                            <td>@item.City</td>
+                            <td>@item.Gender</td>
+                            <td style="width: 5px;">
+                                <button type="button" class="btn btn-success">
+                                    Editar
+                                </button>
+                            </td>
+                            <td style="width: 5px;">
+                                <button type="button" class="btn btn-danger">
+                                    Excluir
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
