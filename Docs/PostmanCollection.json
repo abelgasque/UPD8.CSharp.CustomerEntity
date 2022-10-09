@@ -12,7 +12,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"document\": \"111.222.333-44\",\r\n    \"name\": \"Usuário teste 3\",\r\n    \"birth\": \"2000-04-10T00:00:00\",\r\n    \"gender\": \"M\",\r\n    \"address\": \"Rua teste, casa 123\",\r\n    \"state\": \"SC\",\r\n    \"city\": \"Floripa\"\r\n}",
+					"raw": "{\r\n    \"document\": \"111.222.aaa333-44\",\r\n    \"name\": \"Usuário teste\",\r\n    \"birth\": \"2000-04-10T00:00:00\",\r\n    \"gender\": \"M\",\r\n    \"address\": \"Rua teste, casa 123\",\r\n    \"state\": \"SC\",\r\n    \"city\": \"Floripa\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"

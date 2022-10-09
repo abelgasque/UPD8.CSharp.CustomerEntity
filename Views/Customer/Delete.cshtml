@@ -1,0 +1,23 @@
+﻿@using UPD8.CSharp.Infrastructure.Entities.EF
+@model UPD8.CSharp.Infrastructure.Entities.EF.CustomerEntity
+
+@{
+    ViewData["Title"] = "Cofirmar exclusão do cliente";
+    var customer = ViewData["Customer"] as CustomerEntity;
+}
+
+<div class="container">
+    <div class="row jumbotron" style="padding: 10px;">
+        <div class="col-12 text-center">
+            <h3>
+                Realmente deseja excluir o cliente (@customer.Name) ?
+            </h3>
+        </div>
+        <div class="col-12 col-md-6">
+            <a class="btn btn-primary btn-block" role="button" asp-controller="Customer" asp-action="index">Cancelar</a>
+        </div>
+        <div class="col-12 col-md-6">
+            <a class="btn btn-danger btn-block" role="button" asp-controller="Customer" asp-action="ConfirmDelete" asp-route-id="@customer.Id">Confirmar</a>
+        </div>
+    </div>
+</div>

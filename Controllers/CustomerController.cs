@@ -1,53 +1,76 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using UPD8.CSharp.Customer.Infrastructure.Services;
 using UPD8.CSharp.Infrastructure.Entities.EF;
-using System.Collections.Generic;
 
 namespace UPD8.CSharp.Customer.Controllers
 {
-    [ApiController]
-    [Route("customer")]
-    public class CustomerController : ControllerBase
+    public class CustomerController : Controller
     {
+        private readonly ILogger<HomeController> _logger;
+
         private readonly CustomerService _service;
 
-        public CustomerController(CustomerService service)
+        public CustomerController(
+            ILogger<HomeController> logger,
+            CustomerService service
+        )
         {
+            _logger = logger;
             _service = service;
         }
 
+        public async Task<IActionResult> Index()
+        {
+            List<CustomerEntity> customers = await _service.GetAll();
+            ViewBag.Customers = customers;
+            return View();
+        }
+
+        public IActionResult Create()
+        {
+            ViewBag.Customer = new CustomerEntity();
+            return View();
+        }
+
+
         [HttpPost]
-        public async Task<ActionResult<CustomerEntity>> InsertAsync([FromBody] CustomerEntity pEntity)
+        public async Task<IActionResult> CreateForm(CustomerEntity pEntity)
         {
-            return await _service.InsertAsync(pEntity);
+            CustomerEntity entity = await _service.InsertAsync(pEntity);
+            return RedirectToAction("Index");
         }
 
-        [HttpPut]
-        public async Task<ActionResult<CustomerEntity>> UpdateAsync([FromBody] CustomerEntity pEntity)
+        [Route("customer/update/{id}")]
+        public async Task<IActionResult> Update(string id)
         {
-            return await _service.UpdateAsync(pEntity);
+            CustomerEntity customer = await _service.GetById(long.Parse(id));
+            ViewBag.Customer = customer;
+            return View();
         }
 
-        
-        [HttpGet]
-        [Route("{pId}")]
-        public async Task<ActionResult<CustomerEntity>> GetById(long pId)
+        [HttpPost]
+        public async Task<IActionResult> UpdateForm(CustomerEntity pEntity)
         {
-            return await _service.GetById(pId);
+            await _service.UpdateAsync(pEntity);
+            return RedirectToAction("Index");
         }
 
-        [HttpGet]
-        public async Task<ActionResult<List<CustomerEntity>>> GetAll()
+        [Route("customer/delete/{id}")]
+        public async Task<IActionResult> Delete(string id)
         {
-            return await _service.GetAll();
+            CustomerEntity customer = await _service.GetById(long.Parse(id));
+            ViewBag.Customer = customer;
+            return View();
         }
 
-        [HttpDelete]
-        [Route("{pId}")]
-        public async Task DeleteById(long pId)
+        [Route("customer/confirm/delete/{id}")]
+        public async Task<IActionResult> ConfirmDelete(string id)
         {
-            await _service.DeleteById(pId);
+            await _service.DeleteById(long.Parse(id));
+            return RedirectToAction("Index");
         }
     }
 }
