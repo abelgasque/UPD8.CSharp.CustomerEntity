@@ -1,6 +1,8 @@
 ﻿@using UPD8.CSharp.Infrastructure.Entities.EF
+@model UPD8.CSharp.Infrastructure.Entities.EF.CustomerEntity
 @{
-    ViewData["Title"] = "Clientes";
+    ViewData["Title"] = "Clientes";    
+    var customer = ViewData["Customer"] as CustomerEntity;
     var customers = ViewData["Customers"] as List<CustomerEntity>;
 }
 <div class="container">
@@ -12,11 +14,84 @@
         </div>
 
         <div class="col-12">
-            <form action="">
-                <a asp-controller="Customer" asp-action="Index" class="btn btn-primary">
+            <form class="row" asp-action="FilterForm" asp-controller="Customer" method="post">
+                <div class="col-12 col-md-3">
+                    <label for="Document">CPF</label>
+                    <input asp-for="Document" type="text" class="form-control" id="ValidationDocument"
+                        ame="ValidationDocument" onkeydown="javascript: fMasc( this, mCPF );" maxlength="14" />
+                </div>
+
+                <div class="col-12 col-md-3">
+                    <label for="Name">Nome</label>
+                    <input asp-for="Name" type="text" class="form-control" maxlength="50" />
+                </div>
+
+                <div class="col-12 col-md-3">
+                    <label for="Birth">Data Nascimento</label>
+                    <input asp-for="Birth" type="date" class="form-control" />
+                </div>
+
+                <div class="col-12 col-md-3">
+                    <label for="Gender">Sexo</label>
+                    <div class="input-group mb-3">
+                        <select class="custom-select" asp-for="Gender">
+                            <option>Selecione</option>
+                            <option value="M">Masculino</option>
+                            <option value="F">Feminino</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <label for="Address">Endereço</label>
+                    <input asp-for="Address" type="text" class="form-control" maxlength="250" />
+                </div>
+
+                <div class="col-12 col-md-3">
+                    <label for="State">Estado</label>
+                    <div class="input-group mb-3">
+                        <select class="custom-select" asp-for="State">
+                            <option>Selecione</option>
+                            <option>AC</option>
+                            <option>AL</option>
+                            <option>AP</option>
+                            <option>AM</option>
+                            <option>BA</option>
+                            <option>CE</option>
+                            <option>DF</option>
+                            <option>ES</option>
+                            <option>GO</option>
+                            <option>MA</option>
+                            <option>MS</option>
+                            <option>MT</option>
+                            <option>MG</option>
+                            <option>PA</option>
+                            <option>PB</option>
+                            <option>PR</option>
+                            <option>PE</option>
+                            <option>PI</option>
+                            <option>RJ</option>
+                            <option>RN</option>
+                            <option>RS</option>
+                            <option>RO</option>
+                            <option>RR</option>
+                            <option>SC</option>
+                            <option>SP</option>
+                            <option>SE</option>
+                            <option>TO</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-3">
+                    <label for="City">Cidade</label>
+                    <input asp-for="City" type="text" class="form-control" maxlength="100" />
+                </div>
+
+                <button type="submit" class="btn btn-primary">
                     Pesquisar
-                </a>
-                <a asp-controller="Customer" asp-action="Create" class="btn btn-success">
+                </button>
+                <a asp-controller="Customer" asp-action="Create" class="btn btn-success" style="margin-left:5px;">
                     Criar
                 </a>
                 <a asp-controller="Customer" asp-action="Index" class="btn btn-light" style="margin-left:5px;">
@@ -33,8 +108,6 @@
 
         <div class="col-12 table-responsive">
             <table class="table table-sm">
-                <thead>
-                </thead>
                 <thead>
                     <tr style="text-align: center;">
                         <th scope="col">Cliente</th>
@@ -59,11 +132,11 @@
                             <td>
                                 <div class="btn-group">
                                     <a asp-controller="Customer" asp-action="Update" asp-route-id="@item.Id"
-                                   class="btn btn-success">
+                                    class="btn btn-success">
                                         Editar
                                     </a>
                                     <a asp-controller="Customer" asp-action="Delete" asp-route-id="@item.Id"
-                                   class="btn btn-danger">
+                                    class="btn btn-danger">
                                         Excluir
                                     </a>
                                 </div>

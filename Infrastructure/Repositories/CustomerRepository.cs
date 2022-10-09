@@ -38,8 +38,20 @@ namespace UPD8.CSharp.Infrastructure.Repositories
         public async Task<List<CustomerEntity>> GetAll()
         {
             IQueryable<CustomerEntity> query = _context.Customer.AsNoTracking();
-            //query = (pIsActive != null) ? query.Where(e => e.IsActive == pIsActive.Value) : query;
-            return await query.OrderByDescending(e => e.Id).ToListAsync();
+            return await query.ToListAsync();
+        }
+
+        public async Task<List<CustomerEntity>> Filter(CustomerEntity pEntity)
+        {
+            IQueryable<CustomerEntity> query = _context.Customer.AsNoTracking();
+            query = (pEntity.Name != null) ? query.Where(e => e.Name.Contains(pEntity.Name)) : query;
+            query = (pEntity.Document != null) ? query.Where(e => e.Document.Equals(pEntity.Document)) : query;
+            query = (pEntity.Birth != null) ? query.Where(e => e.Birth.Equals(pEntity.Birth)) : query;
+            query = (pEntity.Gender != "Selecione") ? query.Where(e => e.Gender.Equals(pEntity.Gender)) : query;
+            query = (pEntity.Address != null) ? query.Where(e => e.Address.Contains(pEntity.Address)) : query;
+            query = (pEntity.State != "Selecione") ? query.Where(e => e.State.Equals(pEntity.State)) : query;
+            query = (pEntity.City != null) ? query.Where(e => e.City.Contains(pEntity.City)) : query;
+            return await query.ToListAsync();
         }
 
         public async Task<bool> DeleteById(long pId)

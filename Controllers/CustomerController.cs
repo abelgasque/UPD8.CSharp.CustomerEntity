@@ -29,12 +29,19 @@ namespace UPD8.CSharp.Customer.Controllers
             return View();
         }
 
+        [HttpPost]
+        public async Task<IActionResult> FilterForm(CustomerEntity pEntity)
+        {
+            List<CustomerEntity> customers = await _service.Filter(pEntity);
+            ViewBag.Customers = customers;
+            return View("Index");
+        }
+
         public IActionResult Create()
         {
             ViewBag.Customer = new CustomerEntity();
             return View();
         }
-
 
         [HttpPost]
         public async Task<IActionResult> CreateForm(CustomerEntity pEntity)

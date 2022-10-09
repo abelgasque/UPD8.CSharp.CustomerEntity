@@ -57,7 +57,7 @@ namespace UPD8.CSharp.Customer.Infrastructure.Services
             _logger.LogInformation($"CustomerService.GetById => Start");
             try
             {
-                _logger.LogInformation($"CustomerService.GetById => End");                
+                _logger.LogInformation($"CustomerService.GetById => End");
                 CustomerEntity customer = await _repository.GetById(pId);
                 customer.BirthText = customer.Birth.Value.ToString("yyyy-MM-dd");
                 return customer;
@@ -84,6 +84,21 @@ namespace UPD8.CSharp.Customer.Infrastructure.Services
             }
         }
 
+        public async Task<List<CustomerEntity>> Filter(CustomerEntity pEntity)
+        {
+            _logger.LogInformation($"CustomerService.Filter => Start");
+            try
+            {
+                _logger.LogInformation($"CustomerService.Filter => End");
+                return await _repository.Filter(pEntity);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"CustomerService.Filter => Exception: {ex.Message}");
+                return null;
+            }
+        }
+
         public async Task DeleteById(long pId)
         {
             _logger.LogInformation($"CustomerService.DeleteById => Start");
@@ -94,8 +109,8 @@ namespace UPD8.CSharp.Customer.Infrastructure.Services
             }
             catch (Exception ex)
             {
-                _logger.LogError($"CustomerService.DeleteById => Exception: {ex.Message}");                
+                _logger.LogError($"CustomerService.DeleteById => Exception: {ex.Message}");
             }
-        }        
+        }
     }
 }
