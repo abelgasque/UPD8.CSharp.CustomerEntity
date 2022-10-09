@@ -26,6 +26,7 @@ namespace UPD8.CSharp.Customer.Controllers
         {
             List<CustomerEntity> customers = await _service.GetAll();
             ViewBag.Customers = customers;
+            ViewBag.GenderList = _service.NewGenderList(true);
             return View();
         }
 

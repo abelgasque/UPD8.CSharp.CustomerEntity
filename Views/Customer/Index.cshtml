@@ -34,11 +34,12 @@
                 <div class="col-12 col-md-3">
                     <label for="Gender">Sexo</label>
                     <div class="input-group mb-3">
-                        <select class="custom-select" asp-for="Gender">
+                        @* @Html.DropDownListFor(model => model.Gender, (SelectList)ViewBag.GenderList, "Selecione", new { @class = "form-control custom-select" }) *@
+                        @* <select class="custom-select" asp-for="Gender">                                                      
                             <option>Selecione</option>
                             <option value="M">Masculino</option>
                             <option value="F">Feminino</option>
-                        </select>
+                        </select> *@
                     </div>
                 </div>
 

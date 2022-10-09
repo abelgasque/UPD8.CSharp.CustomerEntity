@@ -4,6 +4,7 @@ using UPD8.CSharp.Infrastructure.Repositories;
 using UPD8.CSharp.Infrastructure.Entities.EF;
 using System.Collections.Generic;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace UPD8.CSharp.Customer.Infrastructure.Services
 {
@@ -111,6 +112,30 @@ namespace UPD8.CSharp.Customer.Infrastructure.Services
             {
                 _logger.LogError($"CustomerService.DeleteById => Exception: {ex.Message}");
             }
+        }
+
+        public List<SelectListItem> NewGenderList(bool pSelectedValueDefault)
+        {
+            List<SelectListItem> listGender = new List<SelectListItem>();
+            listGender.Add(new SelectListItem() { 
+                Text = "Selecione", 
+                Value = null,
+                Selected = pSelectedValueDefault
+            });
+
+            listGender.Add(new SelectListItem() { 
+                Text = "Masculino", 
+                Value = "M",
+                Selected = false
+            });
+
+            listGender.Add(new SelectListItem() { 
+                Text = "Feminino", 
+                Value = "F",
+                Selected = false
+            });
+        
+            return listGender;
         }
     }
 }
