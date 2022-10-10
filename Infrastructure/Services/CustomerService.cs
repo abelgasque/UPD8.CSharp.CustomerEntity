@@ -114,28 +114,43 @@ namespace UPD8.CSharp.Customer.Infrastructure.Services
             }
         }
 
-        public List<SelectListItem> NewGenderList(bool pSelectedValueDefault)
+
+        public List<string> GenderList()
         {
-            List<SelectListItem> listGender = new List<SelectListItem>();
-            listGender.Add(new SelectListItem() { 
-                Text = "Selecione", 
-                Value = null,
-                Selected = pSelectedValueDefault
-            });
+            return new List<string>() { "Masculino", "Feminino" };
+        }
 
-            listGender.Add(new SelectListItem() { 
-                Text = "Masculino", 
-                Value = "M",
-                Selected = false
-            });
-
-            listGender.Add(new SelectListItem() { 
-                Text = "Feminino", 
-                Value = "F",
-                Selected = false
-            });
-        
-            return listGender;
+        public List<string> StateList()
+        {
+            return new List<string>() {
+                "AC",
+                "AL",
+                "AP",
+                "AM",
+                "BA",
+                "CE",
+                "DF",
+                "ES",
+                "GO",
+                "MA",
+                "MS",
+                "MT",
+                "MG",
+                "PA",
+                "PB",
+                "PR",
+                "PE",
+                "PI",
+                "RJ",
+                "RN",
+                "RS",
+                "RO",
+                "RR",
+                "SC",
+                "SP",
+                "SE",
+                "TO"
+             };
         }
     }
 }

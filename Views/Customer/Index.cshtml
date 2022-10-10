@@ -1,7 +1,7 @@
 ﻿@using UPD8.CSharp.Infrastructure.Entities.EF
 @model UPD8.CSharp.Infrastructure.Entities.EF.CustomerEntity
 @{
-    ViewData["Title"] = "Clientes";    
+    ViewData["Title"] = "Clientes";
     var customer = ViewData["Customer"] as CustomerEntity;
     var customers = ViewData["Customers"] as List<CustomerEntity>;
 }
@@ -17,76 +17,46 @@
             <form class="row" asp-action="FilterForm" asp-controller="Customer" method="post">
                 <div class="col-12 col-md-3">
                     <label for="Document">CPF</label>
-                    <input asp-for="Document" type="text" class="form-control" id="ValidationDocument"
-                        ame="ValidationDocument" onkeydown="javascript: fMasc( this, mCPF );" maxlength="14" />
+                    <input asp-for="Document" type="text" class="form-control" placeholder="Digite seu CPF"
+                    id="ValidationDocument" ame="ValidationDocument" onkeydown="javascript: fMasc( this, mCPF );" maxlength="14" />
                 </div>
 
                 <div class="col-12 col-md-3">
                     <label for="Name">Nome</label>
-                    <input asp-for="Name" type="text" class="form-control" maxlength="50" />
+                    <input asp-for="Name" type="text" class="form-control" placeholder="Digite seu Nome" maxlength="50" />
                 </div>
 
                 <div class="col-12 col-md-3">
                     <label for="Birth">Data Nascimento</label>
-                    <input asp-for="Birth" type="date" class="form-control" />
+                    <input asp-for="Birth" type="date" class="form-control" placeholder="Digite sua Data Nascimento"/>
                 </div>
 
                 <div class="col-12 col-md-3">
                     <label for="Gender">Sexo</label>
                     <div class="input-group mb-3">
-                        @* @Html.DropDownListFor(model => model.Gender, (SelectList)ViewBag.GenderList, "Selecione", new { @class = "form-control custom-select" }) *@
-                        @* <select class="custom-select" asp-for="Gender">                                                      
-                            <option>Selecione</option>
-                            <option value="M">Masculino</option>
-                            <option value="F">Feminino</option>
-                        </select> *@
+                        <select class="custom-select" asp-for="Gender" asp-items="new SelectList(ViewBag.GenderList)">
+                            <option value="">Selecione</option>
+                        </select>
                     </div>
                 </div>
 
                 <div class="col-12 col-md-6">
                     <label for="Address">Endereço</label>
-                    <input asp-for="Address" type="text" class="form-control" maxlength="250" />
+                    <input asp-for="Address" type="text" class="form-control" placeholder="Digite seu Endereço" maxlength="250" />
                 </div>
 
                 <div class="col-12 col-md-3">
                     <label for="State">Estado</label>
                     <div class="input-group mb-3">
-                        <select class="custom-select" asp-for="State">
-                            <option>Selecione</option>
-                            <option>AC</option>
-                            <option>AL</option>
-                            <option>AP</option>
-                            <option>AM</option>
-                            <option>BA</option>
-                            <option>CE</option>
-                            <option>DF</option>
-                            <option>ES</option>
-                            <option>GO</option>
-                            <option>MA</option>
-                            <option>MS</option>
-                            <option>MT</option>
-                            <option>MG</option>
-                            <option>PA</option>
-                            <option>PB</option>
-                            <option>PR</option>
-                            <option>PE</option>
-                            <option>PI</option>
-                            <option>RJ</option>
-                            <option>RN</option>
-                            <option>RS</option>
-                            <option>RO</option>
-                            <option>RR</option>
-                            <option>SC</option>
-                            <option>SP</option>
-                            <option>SE</option>
-                            <option>TO</option>
+                        <select class="custom-select" asp-for="State" asp-items="new SelectList(ViewBag.StateList)">
+                            <option value="">Selecione</option>
                         </select>
                     </div>
                 </div>
 
                 <div class="col-12 col-md-3">
                     <label for="City">Cidade</label>
-                    <input asp-for="City" type="text" class="form-control" maxlength="100" />
+                    <input asp-for="City" type="text" class="form-control" placeholder="Digite sua Cidade" maxlength="100" />
                 </div>
 
                 <button type="submit" class="btn btn-primary">

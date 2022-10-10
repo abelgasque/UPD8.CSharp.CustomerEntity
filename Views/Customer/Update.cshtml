@@ -16,47 +16,57 @@
         <form class="row" asp-action="UpdateForm" asp-controller="Customer" method="post">
             <div class="col-12 col-md-3">
                 <label>CPF</label>
-                <input asp-for="Document" type="text" class="form-control" value="@customer.Document" id="ValidationDocument" ame="ValidationDocument" onkeydown="javascript: fMasc( this, mCPF );" required maxlength="14" />
+                <input asp-for="Document" type="text" class="form-control" value="@customer.Document"
+                    id="ValidationDocument" ame="ValidationDocument" onkeydown="javascript: fMasc( this, mCPF );"
+                    placeholder="Digite seu CPF" required maxlength="14" />
             </div>
 
             <div class="col-12 col-md-3">
                 <label>Nome</label>
-                <input asp-for="Name" type="text" class="form-control" value="@customer.Name" required maxlength="50" />
+                <input asp-for="Name" type="text" class="form-control" value="@customer.Name" placeholder="Digite seu Nome" required maxlength="50" />
             </div>
 
             <div class="col-12 col-md-3">
                 <label>Data Nascimento</label>
-                <input asp-for="Birth" type="date" class="form-control" value="@customer.BirthText" required />
+                <input asp-for="Birth" type="date" class="form-control" value="@customer.BirthText" placeholder="Digite sua Data Nascimento" required />
             </div>
 
             <div class="col-12 col-md-3">
                 <label>Sexo</label>
-                <input asp-for="Gender" type="text" class="form-control" value="@customer.Gender" required maxlength="1" />
+                <select class="custom-select" asp-for="Gender" asp-items="new SelectList(ViewBag.GenderList, @customer.Gender)" required>
+                    <option value="">Selecione</option>
+                </select>
             </div>
 
             <div class="col-12 col-md-6">
                 <label>Endereço</label>
-                <input asp-for="Address" type="text" class="form-control" value="@customer.Address" required maxlength="250" />
+                <input asp-for="Address" type="text" class="form-control" value="@customer.Address" 
+                placeholder="Digite seu Endereço" required maxlength="250" />
             </div>
 
             <div class="col-12 col-md-3">
                 <label>Estado</label>
-                <input asp-for="State" type="text" class="form-control" value="@customer.State" required maxlength="50" />
+                <select class="custom-select" asp-for="State" asp-items="new SelectList(ViewBag.StateList, @customer.State)" required>
+                    <option value="">Selecione</option>
+                </select>
             </div>
 
             <div class="col-12 col-md-3">
                 <label>Cidade</label>
-                <input asp-for="City" type="text" class="form-control" value="@customer.City" required maxlength="100" />
+                <input asp-for="City" type="text" class="form-control" value="@customer.City" 
+                placeholder="Digite sua Cidade" required maxlength="100" />
             </div>
             <div class="col-12" style="margin-top: 10px;">
                 <input asp-for="Id" type="hidden" class="form-control" value="@customer.Id" />
                 <button type="submit" class="btn btn-primary">
                     Atualizar
                 </button>
-                <a type="button" class="btn btn-secondary" style="margin-left:5px;" asp-controller="Customer" asp-action="Update" asp-route-id="@customer.Id">
+                <a type="button" class="btn btn-secondary" style="margin-left:5px;" asp-controller="Customer"
+                    asp-action="Update" asp-route-id="@customer.Id">
                     Limpar
                 </a>
-                <a type="button" class="btn btn-secondary" style="margin-left:5px;" asp-controller="Customer" asp-action="Index">
+                <a type="button" class="btn btn-secondary" style="margin-left:5px;" asp-controller="Customer"
+                    asp-action="Index">
                     Voltar
                 </a>
             </div>

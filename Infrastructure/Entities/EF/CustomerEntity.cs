@@ -33,7 +33,7 @@ namespace UPD8.CSharp.Infrastructure.Entities.EF
             builder.Property(e => e.Document).HasColumnName("DOCUMENT").IsRequired().HasMaxLength(15);
             builder.Property(e => e.Name).HasColumnName("NAME").IsRequired().HasMaxLength(150);
             builder.Property(e => e.Birth).HasColumnName("BIRTH").IsRequired();
-            builder.Property(e => e.Gender).HasColumnName("GENDER").IsRequired().HasMaxLength(5);
+            builder.Property(e => e.Gender).HasColumnName("GENDER").IsRequired().HasMaxLength(20);
             builder.Property(e => e.Address).HasColumnName("ADDRESS").IsRequired().HasMaxLength(250);
             builder.Property(e => e.State).HasColumnName("STATE").IsRequired().HasMaxLength(50);
             builder.Property(e => e.City).HasColumnName("CITY").IsRequired().HasMaxLength(100);

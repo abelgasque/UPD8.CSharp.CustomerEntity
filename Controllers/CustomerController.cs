@@ -25,8 +25,9 @@ namespace UPD8.CSharp.Customer.Controllers
         public async Task<IActionResult> Index()
         {
             List<CustomerEntity> customers = await _service.GetAll();
-            ViewBag.Customers = customers;
-            ViewBag.GenderList = _service.NewGenderList(true);
+            ViewBag.Customers = customers;            
+            ViewBag.GenderList = _service.GenderList();
+            ViewBag.StateList = _service.StateList();      
             return View();
         }
 
@@ -34,28 +35,33 @@ namespace UPD8.CSharp.Customer.Controllers
         public async Task<IActionResult> FilterForm(CustomerEntity pEntity)
         {
             List<CustomerEntity> customers = await _service.Filter(pEntity);
-            ViewBag.Customers = customers;
+            ViewBag.Customers = customers;            
+            ViewBag.GenderList = _service.GenderList();
+            ViewBag.StateList = _service.StateList();
             return View("Index");
         }
 
         public IActionResult Create()
         {
             ViewBag.Customer = new CustomerEntity();
+            ViewBag.GenderList = _service.GenderList();
+            ViewBag.StateList = _service.StateList();
             return View();
         }
 
         [HttpPost]
         public async Task<IActionResult> CreateForm(CustomerEntity pEntity)
         {
-            CustomerEntity entity = await _service.InsertAsync(pEntity);
+            await _service.InsertAsync(pEntity);            
             return RedirectToAction("Index");
         }
 
         [Route("customer/update/{id}")]
         public async Task<IActionResult> Update(string id)
         {
-            CustomerEntity customer = await _service.GetById(long.Parse(id));
-            ViewBag.Customer = customer;
+            ViewBag.Customer = await _service.GetById(long.Parse(id));
+            ViewBag.GenderList = _service.GenderList();
+            ViewBag.StateList = _service.StateList();
             return View();
         }
 
