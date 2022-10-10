@@ -11,3 +11,5 @@ Precisamos ter o [Visual Studio 2022](https://visualstudio.microsoft.com/vs/comm
 | Usuário | Senha |
 | -------- | -------- |
 | sa | sa123456 |
+
+Para criar tabela para persistência dos registros de clientes, devemos executar o [ScriptSQL](https://github.com/abelgasque/UPD8.CSharp.CustomerEntity/blob/main/Docs/ScriptSQL.sql) em sua instância do SQL Server.
