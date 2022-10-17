@@ -24,18 +24,16 @@ namespace UPD8.CSharp.Customer.Controllers
 
         public async Task<IActionResult> Index()
         {
-            List<CustomerEntity> customers = await _service.GetAll();
-            ViewBag.Customers = customers;            
+            ViewBag.Customers = await _service.GetAll();
             ViewBag.GenderList = _service.GenderList();
-            ViewBag.StateList = _service.StateList();      
+            ViewBag.StateList = _service.StateList();
             return View();
         }
 
         [HttpPost]
         public async Task<IActionResult> FilterForm(CustomerEntity pEntity)
         {
-            List<CustomerEntity> customers = await _service.Filter(pEntity);
-            ViewBag.Customers = customers;            
+            ViewBag.Customers = await _service.Filter(pEntity);
             ViewBag.GenderList = _service.GenderList();
             ViewBag.StateList = _service.StateList();
             return View("Index");
@@ -75,8 +73,7 @@ namespace UPD8.CSharp.Customer.Controllers
         [Route("customer/delete/{id}")]
         public async Task<IActionResult> Delete(string id)
         {
-            CustomerEntity customer = await _service.GetById(long.Parse(id));
-            ViewBag.Customer = customer;
+            ViewBag.Customer = await _service.GetById(long.Parse(id)); ;
             return View();
         }
 

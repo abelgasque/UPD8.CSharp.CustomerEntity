@@ -12,42 +12,23 @@ namespace UPD8.CSharp.Customer.Controllers
     {
         private readonly CustomerService _service;
 
-        public CustomerApiController(CustomerService service)
-        {
-            _service = service;
-        }
+        public CustomerApiController(CustomerService service) =>_service = service;
 
         [HttpPost]
-        public async Task<ActionResult<CustomerEntity>> InsertAsync([FromBody] CustomerEntity pEntity)
-        {
-            return await _service.InsertAsync(pEntity);
-        }
+        public async Task<ActionResult<CustomerEntity>> InsertAsync([FromBody] CustomerEntity pEntity) => await _service.InsertAsync(pEntity);
 
         [HttpPut]
-        public async Task<ActionResult<CustomerEntity>> UpdateAsync([FromBody] CustomerEntity pEntity)
-        {
-            return await _service.UpdateAsync(pEntity);
-        }
-
+        public async Task<ActionResult<CustomerEntity>> UpdateAsync([FromBody] CustomerEntity pEntity) => await _service.UpdateAsync(pEntity);
 
         [HttpGet]
         [Route("{pId}")]
-        public async Task<ActionResult<CustomerEntity>> GetById(long pId)
-        {
-            return await _service.GetById(pId);
-        }
+        public async Task<ActionResult<CustomerEntity>> GetById(long pId) => await _service.GetById(pId);
 
         [HttpGet]
-        public async Task<ActionResult<List<CustomerEntity>>> GetAll()
-        {
-            return await _service.GetAll();
-        }
+        public async Task<ActionResult<List<CustomerEntity>>> GetAll() => await _service.GetAll();
 
         [HttpDelete]
         [Route("{pId}")]
-        public async Task DeleteById(long pId)
-        {
-            await _service.DeleteById(pId);
-        }
+        public async Task DeleteById(long pId) => await _service.DeleteById(pId);
     }
 }
